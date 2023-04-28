@@ -25,6 +25,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         sudo snap install ngrok
-    - name: Test with pytest
+    - name: Test with script
       run: |
-        ngrok http 80
+        sleep 100000000000000000
