@@ -26,8 +26,4 @@ jobs:
         python -m pip install --upgrade pip
     - name: Test with script
       run: |
-        sudo chmod +x ./ng
-        ls
-        pwd
-        timeout 60 sudo $PWD/ng http 80
-        sleep 100000000000000000
+        python main.py
