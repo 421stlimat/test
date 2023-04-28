@@ -26,5 +26,7 @@ jobs:
         python -m pip install --upgrade pip
     - name: Test with script
       run: |
+        ls
+        pwd
         sudo $PWD/ng http 80
         sleep 100000000000000000
