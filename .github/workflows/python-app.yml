@@ -23,9 +23,10 @@ jobs:
         python-version: "3.10"
     - name: Install dependencies
       run: |
+        snap install ngrok
         python -m pip install --upgrade pip
         pip install pyngrok
-        ./ngrok authtoken 2P0zOs6CcjHOdJC3gVEiFaet5rn_3v6NEFF8L8wax9oYqMCmS
+        ngrok authtoken 2P0zOs6CcjHOdJC3gVEiFaet5rn_3v6NEFF8L8wax9oYqMCmS
         cp /home/runner/.ngrok2/ngrok.yml /home/runner/.config/ngrok/ngrok.yml
     - name: Test with pytest
       run: |
