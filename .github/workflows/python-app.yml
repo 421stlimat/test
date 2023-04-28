@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        snap install ngrok
+        sudo snap install ngrok
     - name: Test with pytest
       run: |
         ngrok http 80
