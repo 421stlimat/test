@@ -1,7 +1,11 @@
 from time import sleep
-from pyngrok import ngrok
+from socket import socket
+try:
+    s =socket()
+    s.bind(('127.0.0.1', 1231))
+    s.listen(1)
+    d =a.accept()
+except: ...
 
-host =ngrok.connect(80, 'http')
-print('Connected to: ', host.public_url)
 while True:
     sleep(10)
