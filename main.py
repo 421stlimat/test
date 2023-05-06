@@ -1,19 +1,21 @@
 import requests
 from PIL import ImageGrab
-import io
+import base64
 
 # Take a screenshot
 screenshot = ImageGrab.grab()
 
-# Convert the image to bytes
-with io.BytesIO() as output:
-    screenshot.save(output, format='PNG')
-    image_bytes = output.getvalue()
+# Convert the image to base64
+with open('screenshot.png', 'wb') as f:
+    screenshot.save(f, format='PNG')
+with open('screenshot.png', 'rb') as f:
+    image_data = f.read()
+image_base64 = base64.b64encode(image_data).decode('utf-8')
 
-# Upload the image to Gofile
-url = "https://srv-store4.gofile.io/uploadFile"
-
-response = requests.post(url, files={"file": ("screenshot.png", image_bytes)})
+# Upload the image to Imgur
+url = 'https://api.imgur.com/3/image'
+payload = {'image': image_base64}
+response = requests.post(url, data=payload)
 
 # Print the URL of the uploaded file
 print(response.json())
