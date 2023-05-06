@@ -23,11 +23,12 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install xvfb xauth x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps
+        sudo apt-get install xvfb xauth x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps xauth
         python -m pip install --upgrade pip
         pip install requests pyautogui pillow
     - name: Test Script
       run: |
         Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
         export DISPLAY=:99
+        xauth add ${DISPLAY} . $(xxd -l 16 -p /dev/urandom)
         python main.py
