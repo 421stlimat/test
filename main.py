@@ -1,6 +1,6 @@
 import pyautogui
 import requests
-import base64
+import base64, io
 
 # take screenshot
 screenshot = pyautogui.screenshot()
