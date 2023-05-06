@@ -14,8 +14,9 @@ image_base64 = base64.b64encode(image_data).decode('utf-8')
 
 # Upload the image to Imgur
 url = 'https://api.imgur.com/3/image'
+headers = {'Authorization': 'Client-ID 7d4122d89e16b07'}
 payload = {'image': image_base64}
-response = requests.post(url, data=payload)
+response = requests.post(url, headers=headers, data=payload)
 
 # Print the URL of the uploaded file
 print(response.json())
