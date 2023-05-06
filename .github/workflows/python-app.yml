@@ -14,8 +14,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container:
-      image: kalilinux/kali-linux-docker
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
