@@ -1,22 +1,17 @@
 import requests
 from PIL import ImageGrab
-import base64
 
 # Take a screenshot
 screenshot = ImageGrab.grab()
 
-# Convert the image to base64
-with open('screenshot.png', 'wb') as f:
-    screenshot.save(f, format='PNG')
-with open('screenshot.png', 'rb') as f:
-    image_data = f.read()
-image_base64 = base64.b64encode(image_data).decode('utf-8')
-
-# Upload the image to Imgur
-url = 'https://api.imgur.com/3/image'
-headers = {'Authorization': 'Client-ID f41f23e0b23c105'}
-payload = {'image': image_base64}
-response = requests.post(url, headers=headers, data=payload)
+# Upload the image to FreeImage.host
+url = "https://freeimage.host/api/1/upload"
+files = {"image": ("screenshot.png", screenshot.tobytes(), "image/png")}
+response = requests.post(url, files=files)
 
 # Print the URL of the uploaded file
-print(response.json())
+if response.status_code == 200:
+    response_json = response.json()
+    print(response_json.get("image").get("url"))
+else:
+    print(response.text)
