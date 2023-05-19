@@ -23,4 +23,4 @@ params = {
 response = requests.post(url, data=params)
 
 # print response
-print(response.json())
+print(response.json()['image']['url'])
